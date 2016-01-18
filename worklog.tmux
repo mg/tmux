@@ -1,10 +1,9 @@
-source-file ./tmux.conf
+tmux new -s worklog -d
+tmux split-window -h -t worklog
+tmux split-window -v -t worklog:0.1
 
-split-window -h -t worklog 
-split-window -v -t worklog:1 
+tmux send-keys -t worklog:0.0 'cd ~/Documents/projects/worklog' C-m
+tmux send-keys -t worklog:0.1 'cd ~/Documents/projects/worklog' C-m
+tmux send-keys -t worklog:0.2 'cd ~/Documents/projects/worklog' C-m
 
-send-keys -t worklog:0 'cd ~/Document/projects/worklog' C-m
-send-keys -t worklog:1.0 'cd ~/Document/projects/worklog' C-m
-send-keys -t worklog:1.1 'cd ~/Document/projects/worklog' C-m
-
-select-window -t worklog:0
+tmux select-pane -t worklog:0.0
