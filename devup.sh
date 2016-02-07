@@ -10,6 +10,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 tmux has-session -t $1
 if [ $? != 0 ]; then
+  export MARKPATH=$HOME/.marks/$1
   source "$DIR/$1.tmux"
 fi
 tmux a -t $1

@@ -1,0 +1,27 @@
+bash
+function jump {
+    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+function mark {
+    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+}
+function unmark {
+    rm -i "$MARKPATH/$1"
+}
+function marks {
+    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+}
+
+fish
+function jump
+  cd $MARKPATH/$argv; or echo "No such mark: $argv"
+end
+function mark
+  mkdir -p $MARKPATH; and ln -s (pwd) $MARKPATH/$argv
+end
+function unmark
+  rm $MARKPATH/$argv
+end
+function marks
+  ls -l $MARKPATH | cut -d' ' -f9-; and echo
+end
